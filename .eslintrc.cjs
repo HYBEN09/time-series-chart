@@ -11,8 +11,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
+    'prettier',
     'plugin:@typescript-eslint/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -23,7 +23,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'jsx-a11y', 'prettier', 'react-hooks', '@typescript-eslint'],
+  plugins: ['react', 'jsx-a11y', 'prettier', '@typescript-eslint'],
   // 개별 규칙 (사용자 정의)
   rules: {
     'no-var': 'error', // var 금지
