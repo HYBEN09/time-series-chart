@@ -12,8 +12,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:jsx-a11y/recommended',
-    'prettier',
     'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -31,6 +31,6 @@ module.exports = {
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }], // console.log() 금지
     eqeqeq: 'error', // 일치 연산자 사용 필수
     'no-unused-vars': 'warn', // 사용하지 않는 변수 금지
-    'react/prop-types': 'off',
+    'prettier/prettier': 'error',
   },
 };
