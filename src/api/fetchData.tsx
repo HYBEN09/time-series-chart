@@ -1,6 +1,5 @@
 import apiClient from './apiClient';
 
-// 데이터를 가져오는 함수
 export async function fetchData() {
   try {
     const response = await apiClient.get('/api/server');
