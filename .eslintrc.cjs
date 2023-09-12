@@ -24,13 +24,12 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'jsx-a11y', 'prettier', '@typescript-eslint'],
-  // 개별 규칙 (사용자 정의)
   rules: {
-    'no-var': 'error', // var 금지
-    'no-multiple-empty-lines': 'warn', // 여러 줄 공백 금지
-    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }], // console.log() 금지
-    eqeqeq: 'error', // 일치 연산자 사용 필수
-    'no-unused-vars': 'warn', // 사용하지 않는 변수 금지
+    'no-var': 'error',
+    'no-multiple-empty-lines': 'warn',
+    'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    eqeqeq: 'error',
+    'no-unused-vars': 'warn',
     'prettier/prettier': 'error',
   },
 };

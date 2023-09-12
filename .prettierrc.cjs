@@ -1,10 +1,14 @@
 module.exports = {
-  printWidth: 100, // printWidth default 80 => 100 으로 변경
-  singleQuote: true, // "" => ''
-  semi: true,
   arrowParens: 'always',
-  tabWidth: 2,
-  bracketSpacing: true,
+  htmlWhitespaceSensitivity: 'css',
   bracketSameLine: false,
+  bracketSpacing: true,
+  printWidth: 80,
+  proseWrap: 'preserve',
+  quoteProps: 'as-needed',
+  semi: true,
+  singleQuote: true,
+  tabWidth: 2,
   trailingComma: 'es5',
+  useTabs: false,
 };
