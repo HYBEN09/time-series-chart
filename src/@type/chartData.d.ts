@@ -1,6 +1,9 @@
 export interface DataItem {
-  id: string;
-  time: string;
-  value_area: number;
-  value_bar: number;
+  [timestamp: string]: {
+    id: string;
+    value_bar: number;
+    value_area: number;
+  };
 }
+
+export type Category = 'All' | 'Bar' | 'Area';
