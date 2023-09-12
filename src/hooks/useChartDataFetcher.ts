@@ -21,9 +21,7 @@ export function useChartDataFetcher(): ChartData {
         const response = await fetchData();
         if (response) {
           setData(response);
-          console.log(response);
           const ids = Array.from(new Set(response.map((item) => item.id)));
-          console.log(ids);
           setUniqueIds(ids);
         } else {
           console.warn('데이터가 없습니다.🥲');

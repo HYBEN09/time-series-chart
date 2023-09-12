@@ -8,22 +8,31 @@ import {
   ComposedChart,
   Area,
 } from 'recharts';
-import { styled } from 'styled-components';
-import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
-import { CustomTooltip } from './CustomTooltip';
-import { Category } from '@/@type/chartData';
 import { useState } from 'react';
 import Buttons from '../UI/Buttons';
+import { styled } from 'styled-components';
+import { Category } from '@/@type/chartData';
+import { CustomTooltip } from './CustomTooltip';
+import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
+
+interface ISelectedId {
+  selectedId: string | null;
+}
 
 export function Chart() {
-  const { data } = useChartDataFetcher();
+  const { data, uniqueIds } = useChartDataFetcher();
+  const [selectedId, setSelectedId] = useState<ISelectedId['selectedId']>(null);
   const [selectedCategory, setSelectedCategory] = useState<Category>('All');
+
+  const filteredData = selectedId
+    ? data.filter((item) => item.id === selectedId)
+    : data;
 
   const handleButtonClick = (category: Category) => {
     setSelectedCategory(category);
   };
 
-  const formattedData = data.map((item) => ({
+  const formattedData = filteredData.map((item) => ({
     ...item,
     time: new Date().toLocaleTimeString('en-US', {
       hour: '2-digit',
@@ -33,9 +42,14 @@ export function Chart() {
     }),
   }));
 
+  const resetFilters = () => {
+    setSelectedId(null);
+    setSelectedCategory('All');
+  };
+
   return (
     <>
-      <ButtonsWrapper>
+      <SCategoryButtons>
         <Buttons
           onClick={() => handleButtonClick('All')}
           activated={selectedCategory === 'All'}
@@ -54,7 +68,25 @@ export function Chart() {
         >
           Bar
         </Buttons>
-      </ButtonsWrapper>
+      </SCategoryButtons>
+      <SUniqButton>
+        <Buttons
+          onClick={resetFilters}
+          activated={!selectedId && selectedCategory === 'All'}
+        >
+          필터 해제
+        </Buttons>
+
+        {uniqueIds.map((id) => (
+          <Buttons
+            key={id}
+            onClick={() => setSelectedId(id)}
+            activated={selectedId === id}
+          >
+            {id}
+          </Buttons>
+        ))}
+      </SUniqButton>
       <ChartWrapper>
         <ComposedChart width={1000} height={500} data={formattedData}>
           <CartesianGrid stroke="#f5f5f5" />
@@ -64,8 +96,8 @@ export function Chart() {
             orientation="left"
             dataKey="value_area"
             stroke="#FFD662"
-            tickCount={6}
-            domain={[0, 500]}
+            tickCount={5}
+            domain={[0, 200]}
           />
           <YAxis
             yAxisId="right"
@@ -75,10 +107,8 @@ export function Chart() {
             tickCount={7}
             domain={[0, 20000]}
           />
-          <Tooltip
-            wrapperStyle={{ width: 200, backgroundColor: '#ccc' }}
-            content={<CustomTooltip active={undefined} payload={undefined} />}
-          />
+          <Tooltip content={<CustomTooltip />} />
+
           <Legend />
 
           {selectedCategory === 'All' || selectedCategory === 'Bar' ? (
@@ -87,7 +117,7 @@ export function Chart() {
               yAxisId="right"
               name="Value Bar"
               fill="#00539C"
-              barSize={50}
+              barSize={70}
             />
           ) : null}
 
@@ -106,7 +136,15 @@ export function Chart() {
   );
 }
 
-const ButtonsWrapper = styled.div`
+const SCategoryButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+`;
+
+const SUniqButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
