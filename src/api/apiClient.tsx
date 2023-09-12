@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-// export const API_URL = process.env.REACT_APP_BASE_URL;
-export const API_URL = 'https://fourth-9qyivvzjg-akows.vercel.app';
+import { API_URL } from '@/constants/url';
 
 const apiClient = axios.create({
   baseURL: API_URL,
