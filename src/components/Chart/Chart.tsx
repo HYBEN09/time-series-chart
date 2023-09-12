@@ -8,29 +8,26 @@ import {
   ComposedChart,
   Area,
 } from 'recharts';
-import { useState } from 'react';
 import Buttons from '../UI/Buttons';
 import { styled } from 'styled-components';
-import { Category } from '@/@type/chartData';
 import { CustomTooltip } from './CustomTooltip';
 import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
-
-interface ISelectedId {
-  selectedId: string | null;
-}
+import { useChartState } from '@/hooks/useChartState';
 
 export function Chart() {
   const { data, uniqueIds } = useChartDataFetcher();
-  const [selectedId, setSelectedId] = useState<ISelectedId['selectedId']>(null);
-  const [selectedCategory, setSelectedCategory] = useState<Category>('All');
+
+  const {
+    selectedId,
+    setSelectedId,
+    selectedCategory,
+    handleButtonClick,
+    resetFilters,
+  } = useChartState();
 
   const filteredData = selectedId
     ? data.filter((item) => item.id === selectedId)
     : data;
-
-  const handleButtonClick = (category: Category) => {
-    setSelectedCategory(category);
-  };
 
   const formattedData = filteredData.map((item) => ({
     ...item,
@@ -41,11 +38,6 @@ export function Chart() {
       hour12: false,
     }),
   }));
-
-  const resetFilters = () => {
-    setSelectedId(null);
-    setSelectedCategory('All');
-  };
 
   return (
     <>
