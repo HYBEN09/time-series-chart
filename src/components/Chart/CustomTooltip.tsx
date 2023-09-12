@@ -9,15 +9,16 @@ interface TooltipProps {
 export function CustomTooltip({ active, payload }: TooltipProps) {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
+
     return (
-      <TooltipContainer className="custom-tooltip">
-        <TooltipText>ID: {data.id}</TooltipText>
-        <TooltipText>
+      <TooltipContainer>
+        <TooltipText>지역: {data.id}</TooltipText>
+        <TooltipAreaText>
           Value Area: <TooltipValue>{data.value_area}</TooltipValue>
-        </TooltipText>
-        <TooltipText>
+        </TooltipAreaText>
+        <TooltipBarText>
           Value Bar: <TooltipValue>{data.value_bar}</TooltipValue>
-        </TooltipText>
+        </TooltipBarText>
       </TooltipContainer>
     );
   }
@@ -27,15 +28,23 @@ export function CustomTooltip({ active, payload }: TooltipProps) {
 
 const TooltipContainer = styled.div`
   background-color: #fff;
-  border: 1px solid #ccc;
   padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 const TooltipText = styled.p`
-  margin: 0;
+  font-weight: 600;
 `;
 
-const TooltipValue = styled.span`
-  font-weight: bold;
+const TooltipAreaText = styled.p`
+  padding-top: 5px;
+  color: #ffd662;
 `;
+
+const TooltipBarText = styled.p`
+  padding-top: 5px;
+  color: #00539c;
+`;
+
+const TooltipValue = styled.span``;
