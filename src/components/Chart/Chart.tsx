@@ -62,7 +62,10 @@ export function Chart() {
       </SCategoryButtons>
       <SUniqButton>
         <Buttons
-          onClick={resetFilters}
+          onClick={() => {
+            resetFilters();
+            setClickedId(null);
+          }}
           activated={!selectedId && selectedCategory === 'All'}
         >
           필터 해제
