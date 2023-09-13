@@ -1,10 +1,10 @@
 import { Chart } from '@/components/Chart/Chart';
-import { ChartTitle } from '@/components/Chart/ChartTitle';
+import Header from '@/components/UI/Header';
 
 function Home() {
   return (
     <>
-      <ChartTitle title={'시계열 차트'} content={'2023-2-1의 시계열 차트'} />
+      <Header title={'시계열 차트'} content={'2023-2-1의 시계열 차트'} />
       <Chart />
     </>
   );

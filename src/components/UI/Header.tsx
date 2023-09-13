@@ -5,7 +5,7 @@ interface ChartTitleProps {
   content: string;
 }
 
-export function ChartTitle({ title, content }: ChartTitleProps) {
+function Header({ title, content }: ChartTitleProps) {
   return (
     <TitleContainer>
       <Title>{title}</Title>
@@ -25,9 +25,12 @@ const TitleContainer = styled.header`
 
 const Title = styled.h1`
   font-size: 2rem;
+  font-weight: 600;
 `;
 
 const Content = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 14px;
 `;
+
+export default Header;
