@@ -127,7 +127,7 @@ export function Chart() {
                     cx={cx}
                     cy={cy}
                     r={4}
-                    fill={isActive ? '#b7ff00' : fill}
+                    fill={isActive ? '#fddcd0' : fill}
                     className="cursor-pointer"
                     onClick={() => {
                       if (isActive) {

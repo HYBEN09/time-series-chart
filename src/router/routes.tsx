@@ -1,3 +1,4 @@
+import Loading from '@/components/UI/Loading';
 import { Suspense, lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <RouterProvider router={router} />
     </Suspense>
   );
