@@ -132,6 +132,7 @@ export function Chart() {
               dataKey="value_area"
               stroke="#fa5a20"
               fill="#fa5a20"
+              dot={{ fill: '#fa5a20', radius: 4 }}
             />
           ) : null}
         </ComposedChart>

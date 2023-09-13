@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from '@/api/fetchData';
-import { DataItem } from '@/@type/chartData';
+import { DataItem } from '@/constants/@type/chartData';
 
 interface ChartData {
   data: DataItem[];

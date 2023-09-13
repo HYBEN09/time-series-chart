@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Category } from '@/@type/chartData';
+import { Category } from '@/constants/@type/chartData';
 
 interface ISelectedId {
   selectedId: string | null;
