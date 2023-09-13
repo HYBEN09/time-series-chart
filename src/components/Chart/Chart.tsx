@@ -15,6 +15,7 @@ import { styled } from 'styled-components';
 import { CustomTooltip } from './CustomTooltip';
 import { useChartState } from '@/hooks/useChartState';
 import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
+import { CategoryButtons } from '../Filter/CategoryButton';
 
 export function Chart() {
   const { data, uniqueIds } = useChartDataFetcher();
@@ -40,26 +41,10 @@ export function Chart() {
 
   return (
     <>
-      <SCategoryButtons>
-        <Buttons
-          onClick={() => handleButtonClick('All')}
-          activated={selectedCategory === 'All'}
-        >
-          All
-        </Buttons>
-        <Buttons
-          onClick={() => handleButtonClick('Area')}
-          activated={selectedCategory === 'Area'}
-        >
-          Area
-        </Buttons>
-        <Buttons
-          onClick={() => handleButtonClick('Bar')}
-          activated={selectedCategory === 'Bar'}
-        >
-          Bar
-        </Buttons>
-      </SCategoryButtons>
+      <CategoryButtons
+        selectedCategory={selectedCategory}
+        handleButtonClick={handleButtonClick}
+      />
       <SUniqButton>
         <Buttons
           onClick={() => {
@@ -163,14 +148,6 @@ export function Chart() {
     </>
   );
 }
-
-const SCategoryButtons = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-`;
 
 const SUniqButton = styled.div`
   display: flex;
