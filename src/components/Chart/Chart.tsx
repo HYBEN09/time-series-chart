@@ -11,8 +11,8 @@ import {
 import Buttons from '../UI/Buttons';
 import { styled } from 'styled-components';
 import { CustomTooltip } from './CustomTooltip';
-import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
 import { useChartState } from '@/hooks/useChartState';
+import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
 
 export function Chart() {
   const { data, uniqueIds } = useChartDataFetcher();
@@ -82,12 +82,12 @@ export function Chart() {
       <ChartWrapper>
         <ComposedChart width={1000} height={500} data={formattedData}>
           <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="time" stroke="#8884d8" />
+          <XAxis dataKey="time" stroke="#5f3eb2" />
           <YAxis
             yAxisId="left"
             orientation="left"
             dataKey="value_area"
-            stroke="#FFD662"
+            stroke="#fa5a20"
             tickCount={5}
             domain={[0, 200]}
           />
@@ -119,7 +119,7 @@ export function Chart() {
               type="monotone"
               dataKey="value_area"
               stroke="#fa5a20"
-              fill="#FFD662"
+              fill="#fa5a20"
             />
           ) : null}
         </ComposedChart>

@@ -26,7 +26,7 @@ const StyledButton = styled.button<{ $activated: string }>`
   font-size: 1.2rem;
 
   background: ${(props) =>
-    props.$activated === 'true' ? `#1f76c3` : `#00539C`};
+    props.$activated === 'true' ? `#a68ee3` : `#5f3eb2`};
 `;
 
 export default Buttons;

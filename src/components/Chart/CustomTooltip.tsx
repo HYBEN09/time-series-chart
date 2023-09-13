@@ -10,14 +10,16 @@ export function CustomTooltip({ active, payload }: TooltipProps) {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
 
+    const { id, value_area, value_bar } = data;
+
     return (
       <TooltipContainer>
-        <TooltipText>지역: {data.id}</TooltipText>
+        <TooltipText>지역: {id}</TooltipText>
         <TooltipAreaText>
-          Value Area: <TooltipValue>{data.value_area}</TooltipValue>
+          Value Area: <TooltipValue>{value_area}</TooltipValue>
         </TooltipAreaText>
         <TooltipBarText>
-          Value Bar: <TooltipValue>{data.value_bar}</TooltipValue>
+          Value Bar: <TooltipValue>{value_bar}</TooltipValue>
         </TooltipBarText>
       </TooltipContainer>
     );
@@ -27,7 +29,7 @@ export function CustomTooltip({ active, payload }: TooltipProps) {
 }
 
 const TooltipContainer = styled.div`
-  background-color: #fff;
+  background-color: #ffffffd8;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -35,11 +37,12 @@ const TooltipContainer = styled.div`
 
 const TooltipText = styled.p`
   font-weight: 600;
+  color: #5f3eb2;
 `;
 
 const TooltipAreaText = styled.p`
   padding-top: 5px;
-  color: #ffd662;
+  color: #fa5a20;
 `;
 
 const TooltipBarText = styled.p`
@@ -47,4 +50,6 @@ const TooltipBarText = styled.p`
   color: #00539c;
 `;
 
-const TooltipValue = styled.span``;
+const TooltipValue = styled.span`
+  font-weight: 600;
+`;
