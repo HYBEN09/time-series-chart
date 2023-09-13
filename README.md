@@ -1,4 +1,4 @@
-# ⭐️ 원티드 프리온보딩 프론트엔드 인턴십 - 4주차 과제
+# ⭐️ 원티드 프리온보딩 프론트엔드 인턴십 - 4주차 개인 과제
 
 ## 📌 과제 소개
 
@@ -78,8 +78,13 @@
 ### **📍[Assignment 3] 필터링 기능 구현**
 | 필터링 기능 구현       |
 | -------------------------------- |
-| <img width="700" alt="image" src="https://github.com/HYBEN09/time-series-chart/assets/104710243/e803c693-8a37-49f4-9e05-80de35567242">| 
+| <img width="700" alt="image" src="https://github.com/HYBEN09/time-series-chart/assets/104710243/e64cccee-41fb-43f5-b263-b4751246833c">| 
 
+- 상태 관리 : useChartState라는 커스텀 훅을 사용하여 선택된 ID (selectedId)를 상태로 관리. 이 상태는 버튼 클릭 또는 데이터 구역 클릭으로 업데이트 됩니다.
+- 버튼 필터링 : 각 버튼은 고유한 ID 값을 가지고 버튼이 클릭되면, 그 버튼의 ID 값이 handleButtonClick 함수로 전달되어 selectedId 상태를 업데이트합니다.
+- 데이터 구역 클릭 필터링 : 데이터 구역이 클릭되면, 해당 구역의 ID 값이 handleAreaClick 함수로 전달되어 selectedId 상태를 업데이트 합니다.
+- 하이라이트 처리 : 선택된 ID와 일치하는 데이터 구역만 하이라이트 처리
+- 필터 초기화 : 'All' 버튼을 누르거나, 이미 하이라이트된 데이터 구역을 다시 클릭하면 모든 필터가 초기화됩니다 (selectedId가 null로 설정).
 
 
 ## 🌲 프로젝트 구조
