@@ -130,9 +130,7 @@ export function Chart() {
               stroke="#fa5a20"
               fill="#fa5a20"
             />
-          ) : (
-            <Area yAxisId="left" dataKey="value_area" />
-          )}
+          ) : null}
         </ComposedChart>
       </ChartWrapper>
     </>
