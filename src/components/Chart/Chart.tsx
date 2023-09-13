@@ -72,7 +72,7 @@ export function Chart() {
       <ChartWrapper>
         <ComposedChart width={1000} height={500} data={formattedData}>
           <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="time" stroke="#8884d8" />
+          <XAxis dataKey="time" stroke="#8884d8" tick={{ fontSize: '12px' }} />
           <YAxis
             yAxisId="left"
             orientation="left"
@@ -99,7 +99,7 @@ export function Chart() {
               barSize={70}
             >
               {formattedData.map((entry, index) => {
-                const fill = entry.id === clickedId ? '#413ea0' : '#9b99d8';
+                const fill = entry.id === clickedId ? '#00539C' : '#b7b5ed';
                 return (
                   <Cell
                     key={`cell-${index}`}
