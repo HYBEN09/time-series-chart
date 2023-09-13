@@ -7,7 +7,9 @@ import {
   Legend,
   ComposedChart,
   Area,
+  Cell,
 } from 'recharts';
+import { useState } from 'react';
 import Buttons from '../UI/Buttons';
 import { styled } from 'styled-components';
 import { CustomTooltip } from './CustomTooltip';
@@ -16,7 +18,6 @@ import { useChartDataFetcher } from '@/hooks/useChartDataFetcher';
 
 export function Chart() {
   const { data, uniqueIds } = useChartDataFetcher();
-
   const {
     selectedId,
     setSelectedId,
@@ -25,11 +26,9 @@ export function Chart() {
     resetFilters,
   } = useChartState();
 
-  const filteredData = selectedId
-    ? data.filter((item) => item.id === selectedId)
-    : data;
+  const [clickedId, setClickedId] = useState<string | null>('null');
 
-  const formattedData = filteredData.map((item) => ({
+  const formattedData = data.map((item) => ({
     ...item,
     time: new Date().toLocaleTimeString('en-US', {
       hour: '2-digit',
@@ -72,7 +71,10 @@ export function Chart() {
         {uniqueIds.map((id) => (
           <Buttons
             key={id}
-            onClick={() => setSelectedId(id)}
+            onClick={() => {
+              setSelectedId(id);
+              setClickedId(id);
+            }}
             activated={selectedId === id}
           >
             {id}
@@ -82,7 +84,7 @@ export function Chart() {
       <ChartWrapper>
         <ComposedChart width={1000} height={500} data={formattedData}>
           <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="time" stroke="#5f3eb2" />
+          <XAxis dataKey="time" stroke="#8884d8" />
           <YAxis
             yAxisId="left"
             orientation="left"
@@ -100,19 +102,26 @@ export function Chart() {
             domain={[0, 20000]}
           />
           <Tooltip content={<CustomTooltip />} />
-
           <Legend />
-
           {selectedCategory === 'All' || selectedCategory === 'Bar' ? (
             <Bar
               dataKey="value_bar"
               yAxisId="right"
               name="Value Bar"
-              fill="#00539C"
               barSize={70}
-            />
+            >
+              {formattedData.map((entry, index) => {
+                const fill = entry.id === clickedId ? '#413ea0' : '#9b99d8';
+                return (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={fill}
+                    className="cursor-pointer"
+                  />
+                );
+              })}
+            </Bar>
           ) : null}
-
           {selectedCategory === 'All' || selectedCategory === 'Area' ? (
             <Area
               yAxisId="left"
@@ -121,7 +130,9 @@ export function Chart() {
               stroke="#fa5a20"
               fill="#fa5a20"
             />
-          ) : null}
+          ) : (
+            <Area yAxisId="left" dataKey="value_area" />
+          )}
         </ComposedChart>
       </ChartWrapper>
     </>

@@ -1,4 +1,3 @@
-// hooks/useChartState.ts
 import { useState } from 'react';
 import { Category } from '@/@type/chartData';
 
