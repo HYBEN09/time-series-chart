@@ -31,5 +31,6 @@ module.exports = {
     eqeqeq: 'error',
     'no-unused-vars': 'warn',
     'prettier/prettier': 'error',
+    'react/prop-types': 'off',
   },
 };

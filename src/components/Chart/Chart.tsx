@@ -132,7 +132,30 @@ export function Chart() {
               dataKey="value_area"
               stroke="#fa5a20"
               fill="#fa5a20"
-              dot={{ fill: '#fa5a20', radius: 4 }}
+              dot={(props) => {
+                const { cx, cy, fill, payload } = props;
+                const isActive = payload.id === clickedId;
+
+                return (
+                  <circle
+                    key={props.index}
+                    cx={cx}
+                    cy={cy}
+                    r={4}
+                    fill={isActive ? '#b7ff00' : fill}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      if (isActive) {
+                        setSelectedId(null);
+                        setClickedId(null);
+                      } else {
+                        setSelectedId(payload.id);
+                        setClickedId(payload.id);
+                      }
+                    }}
+                  />
+                );
+              }}
             />
           ) : null}
         </ComposedChart>
